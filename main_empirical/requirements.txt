@@ -1,9 +1,0 @@
-# For exact reproduction, prefer the same versions used in the original computing environment.
-numpy
-pandas
-scipy
-scikit-learn
-nltk
-spacy
-# step2 additionally requires the original en_core_web_lg model and the original NLTK tokenizer, tagger, and wordnet data.
-# The original plotting scripts additionally require matplotlib, statsmodels, the original paper_style.py, and the matching fonts.
