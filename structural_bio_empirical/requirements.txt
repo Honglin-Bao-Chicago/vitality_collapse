@@ -1,0 +1,10 @@
+# For exact reproduction, keep the original environment versions; do not upgrade dependencies or NLP resources as part of this simplification.
+numpy
+pandas
+scipy
+scikit-learn
+matplotlib
+tqdm
+nltk
+spacy
+# Also requires the original en_core_web_lg model, plus NLTK punkt_tab, averaged_perceptron_tagger_eng, and wordnet.
