@@ -1,4 +1,3 @@
-"""Keep only the primary-topic proportions for the three fields, plus the data and y_labels needed by the final heatmap."""
 from collections import defaultdict
 import pickle
 from common_io import iter_work_records, load_topic_map
@@ -16,7 +15,6 @@ def compute_heatmap(records, id_to_type):
     labels = ['Theory', 'System', 'AI']
     data = {label: [] for label in labels}
     for year, by_type in counts.items():
-        # The denominator includes other types in the mapping table, not just these three.
         total = sum(by_type.values())
         if total == 0:
             continue

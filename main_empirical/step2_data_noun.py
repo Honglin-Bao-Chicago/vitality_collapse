@@ -1,4 +1,3 @@
-"""Keep the original tf and the per-paper unique word lists for the three noun types"""
 import gzip
 import json
 import re

@@ -1,8 +1,6 @@
-"""Preserve the original file traversal order and topic mapping rules."""
 import gzip
 import json
 from pathlib import Path
-
 
 def iter_work_records(directory):
     for path in sorted(Path(directory).rglob('*.gz')):
@@ -20,7 +18,6 @@ def load_topic_map(path):
 
 
 class YearWriter:
-    """Append records within a single run; refuse to append to a pre-existing year file to avoid duplicate samples."""
     def __init__(self, directory, years):
         self.directory = Path(directory)
         self.directory.mkdir(parents=True, exist_ok=True)

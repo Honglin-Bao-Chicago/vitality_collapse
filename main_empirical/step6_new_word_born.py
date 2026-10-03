@@ -1,4 +1,3 @@
-"""Merge the regular and robustness versions; compute only Full, AI, and NonAI for the three noun definitions."""
 from collections import Counter, defaultdict
 import pandas as pd
 from common_io import iter_work_records, load_topic_map
@@ -23,10 +22,8 @@ def aggregate_document_frequencies(records, id_to_type):
             continue
         group = 'AI' if field_type == 'AI' else 'NonAI'
         for field in NOUN_FIELDS:
-            # The new format is a list of unique words; the old format is a word-frequency dict. Both are deduplicated by key/word.
             words = set(work.get(field, {}))
             for target in ('Full', group):
-                # Papers with no nouns still create the year entry, preserving the year set determined by the original work_count.
                 result[field][target][year].update(words)
     return result
 
@@ -54,7 +51,6 @@ def calculate_new_words(year2df, keep_population):
                     deaths += 1
                     dead.add(word)
             elif word in dead and word in current:
-                # Revivals change the survival count, so the state update must be kept, but revivals are not counted separately.
                 dead.remove(word)
         seen |= current
         row = {

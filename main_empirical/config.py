@@ -3,8 +3,6 @@ from pathlib import Path
 PROJECT_ROOT = Path('/project/jevans/beichen/code')
 SNAPSHOT_DIR = Path('/project/jevans/openalex-snapshot/data/works')
 TOPIC_CSV = PROJECT_ROOT / '20260307_result_data/20260123_all_topics_hlb.csv'
-
-# Separate output directory, for field-by-field comparison with the original results.
 OUTPUT_ROOT = PROJECT_ROOT / '20260307_simplified'
 CUT_DIR = OUTPUT_ROOT / '20260307_works_cut'
 WORKS_DIR = OUTPUT_ROOT / '20260307_works_final'

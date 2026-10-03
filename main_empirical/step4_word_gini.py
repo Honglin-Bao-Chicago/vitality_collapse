@@ -1,4 +1,4 @@
-"""Keep only f1000 and k=5/10/15; reuse the original TF-IDF, tie ordering, and Gini algorithms."""
+"""Keep only k=5/10/15; reuse the original TF-IDF, tie ordering, and Gini algorithms."""
 import gzip
 import json
 from collections import Counter
@@ -28,7 +28,6 @@ def top_k_from_sparse_row(indices: np.ndarray, data: np.ndarray, feature_names: 
         order = idx[np.argsort(data[idx])[::-1]]
     return [(str(feature_names[indices[i]]), float(data[i])) for i in order[:k]]
 
-
 def read_year_jsonl_gz(path):
     year_value = None
     tf_dicts = []
@@ -39,7 +38,6 @@ def read_year_jsonl_gz(path):
             work = json.loads(line)
             year = work.get('year')
             tf = work.get('tf')
-            # The original 'all' branch also assigned work_id as tf, so it does not actually filter on whether the id is missing.
             if year is None or not isinstance(tf, dict) or len(tf) == 0:
                 continue
             if year_value is None:
@@ -49,7 +47,6 @@ def read_year_jsonl_gz(path):
         raise ValueError(f'No valid records in file: {path}')
     return year_value, tf_dicts
 
-
 def build_vocab(tf_dicts):
     df_counter, tf_total = Counter(), Counter()
     for tf in tf_dicts:
@@ -57,10 +54,8 @@ def build_vocab(tf_dicts):
         df_counter.update(tf.keys())
     max_df = int(np.floor(0.8 * len(tf_dicts)))
     candidates = [term for term, df in df_counter.items() if df >= 2 and df <= max_df]
-    # Keep the stable sort and original traversal order; do not add a sort key for words with equal frequency.
     candidates.sort(key=lambda term: tf_total[term], reverse=True)
-    return set(candidates[:1000])
-
+    return set(candidates)
 
 def process_one_year(path):
     year, tf_dicts = read_year_jsonl_gz(path)

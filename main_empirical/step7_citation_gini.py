@@ -52,7 +52,6 @@ def gini_from_hist(hist: Dict[int, int]) -> float:
         prev_P = P
     return 1.0 - 2.0 * area
 
-
 def compute_yearly_citation_inequality(records):
     histograms = defaultdict(Counter)
     for work in records:
@@ -76,7 +75,6 @@ def main():
     RESULT_DIR.mkdir(parents=True, exist_ok=True)
     frame.to_csv(RESULT_DIR / 'citation3.csv', index=False)
     print('Saved citation3.csv; its correspondence to the citation.csv read by the plots is still to be verified.')
-
 
 if __name__ == '__main__':
     main()

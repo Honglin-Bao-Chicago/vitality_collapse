@@ -47,7 +47,6 @@ def select_work(work, stopwords):
     if work.get('type') not in {'article', 'journal-article'}:
         return None
 
-    # In this step the original tf only decides whether a sample is kept; keep the same check without building a term-frequency table.
     valid_token = False
     for token, positions in inv.items():
         if normalize_token(token, stopwords, 2) is None:
