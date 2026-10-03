@@ -157,5 +157,6 @@ def main():
                 desc='Filtering'):
                 pass
         merge_year_shards(tmp, CUT_DIR)
+        
 if __name__ == '__main__':
     main()

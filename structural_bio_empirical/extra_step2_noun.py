@@ -241,5 +241,6 @@ def main():
             for _ in tqdm(pool.imap_unordered(process_chunk, tasks, chunksize=1), total=len(tasks), desc='NLP'):
                 pass
         merge_year_chunks(str(processed), str(NOUN_DIR), valid)
+        
 if __name__ == '__main__':
     main()
